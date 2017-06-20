@@ -1,0 +1,91 @@
+<template name ="adminLayout">
+   <header>
+      {{> bandeau}}
+      <script type="text/javascript">
+         var modal;
+         function postAlert(prenom, nom, courriel, adresse, ville, province, codePostal, pays, commentaire){
+          modal = document.getElementById('myModal');
+         modal.style.display = "block";
+         var modalContent = document.getElementById('modal-header').innerHTML = prenom + "&nbsp" + nom;
+         modalContent = document.getElementById('courriel').innerHTML = courriel;
+         modalContent = document.getElementById('adresse').innerHTML = adresse;
+         modalContent = document.getElementById('ville').innerHTML = ville;
+         modalContent = document.getElementById('province').innerHTML = province;
+         modalContent = document.getElementById('codePostal').innerHTML = codePostal;
+         modalContent = document.getElementById('pays').innerHTML = pays;
+         modalContent = document.getElementById('comment').innerHTML = commentaire;
+         }
+         function postClose(){
+           modal = modal.style.display = "none";
+         }
+      </script>
+   </header>
+</template>
+<template name ="acceuilAdmin">
+   <h1>Bienvenue sur l'acceuil administrateur</h1>
+   <div id="loginButton">{{> loginButtons}}</div>
+</template>
+<template name ="formulaireRecu">
+   <h1>Liste des formulaires reçu</h1>
+   <div id="loginButton">{{> loginButtons}}</div>
+   {{#if currentUser}}
+   <form class="listeFormulaire">
+      {{> postsList}}
+   </form>
+   {{/if}}
+</template>
+<template name="postsList">
+   <div class="posts page">
+      {{#each posts}}
+      <div id="myBtn">
+         <div class="newEntry" onclick="postAlert('{{prenom}}', '{{nom}}',  '{{courriel}}','{{adresse}}','{{ville}}','{{province}}','{{codePostal}}','{{pays}}','{{commentaire}}')">
+            <div id ="form">
+               <h3>{{prenom}}&nbsp;{{nom}}</h3>
+               {{courriel}} 
+            </div>
+            <br/>  
+         </div>
+      </div>
+      <div id="myModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header"  >
+               <span class="close" onclick="postClose()">&times;</span>
+               <h2 id="modal-header">{{prenom}}&nbsp;{{nom}}</h2>
+            </div>
+            <div class="modal-body" id="modal-body">
+               <table>
+                  <tr>
+                     <td id="title">Mail :</td>
+                     <td id ="courriel">{{courriel}}</td>
+                  </tr>
+                  <tr>
+                     <td id="title">Adresse : </td>
+                     <td id ="adresse">{{adresse}}</td>
+                  </tr>
+                  <tr>
+                     <td id="title">Ville : </td>
+                     <td id ="ville">{{ville}}</td>
+                  </tr>
+                  <tr>
+                     <td id="title">Province : </td>
+                     <td id ="province">{{province}}</td>
+                  </tr>
+                  <tr>
+                     <td id="title">Code Postal :</td>
+                     <td id ="codePostal">{{codePostal}}</td>
+                  </tr>
+                  <tr>
+                     <td id="title">Pays : </td>
+                     <td id ="pays">{{pays}}</td>
+                  </tr>
+                  <tr>
+                     <td id="title">Commentaire : </td>
+                  </tr>
+                  <tr id ="comment">{{commentaire}}</tr>
+               </table>
+            </div>
+         </div>
+      </div>
+      {{/each}}
+   </div>
+</template>

@@ -1,0 +1,39 @@
+<template name ="homeLayout">
+   <header>
+   </header>
+   <main>
+      {{> bandeau}}
+   </main>
+</template>
+<template name ="bandeau">
+   <div id="wrapper">
+      <ul id="menu-accordeon">
+         <li><a href="#" onclick="FlowRouter.go('home')">Acceuil</a>
+         </li>
+         <li>
+            <a href="#">Administrateur</a>
+            <ul>
+               <li><a href="#" onclick="FlowRouter.go('acceuilAdmin')">Acceuil admin</a></li>
+               <li><a href="#" onclick="FlowRouter.go('formulaireRecu')">Formulaire recu</a></li>
+            </ul>
+         </li>
+         <li>
+            <a href="#">Client</a>
+            <ul>
+               <li><a href="#" onclick="FlowRouter.go('acceuilClient')">Acceuil Client</a></li>
+               <li><a href="#" onclick="FlowRouter.go('formulaire')">Formulaire</a></li>
+            </ul>
+         </li>
+      </ul>
+      <div id="page-wrapper">
+         <div id="page-inner">
+            <main>
+               {{> Template.dynamic template=main}} 
+            </main>
+         </div>
+      </div>
+   </div>
+</template>
+<template name ="home">
+   <h1>Bienvenue sur notre site</h1>
+</template>
